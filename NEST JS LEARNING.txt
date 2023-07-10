@@ -65,3 +65,6 @@ Dependency that we need, we can ask with an injection token either in constructo
 2) Property Injection
    a) Class provider
    b) non class 
+
+If node module is missing
+pnpm install

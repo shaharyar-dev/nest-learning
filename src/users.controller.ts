@@ -9,11 +9,27 @@ import {
     Header,
     Redirect,
     Body,
-    Inject
+    Inject,
+    Param,
+    Query,
+    Headers,
 } from "@nestjs/common";
+
+
 import { of } from "rxjs";
 import { Request, response } from "express";
 import { PostsStore } from "./posts.store";
+
+interface videosParams {
+    id: number;
+    name: string;
+}
+
+interface imagesQuery {
+    name: string;
+    age: number;
+}
+
 
 @Controller('/users')
 
@@ -108,12 +124,29 @@ export class UsersController {
     // Learn more about redirect handling
     @Post("/profiletest4")
     @Redirect("/users/account")
+    @Redirect("/users/account",302)
     getProfileTest4(@Req() req: Request) {
-        return({
-            hello : "world",
-        });
+        const rn = ~~(Math.random() + 10 +1);	
+        if(rn < 5)	
+        {	
+            return({	
+                url : "/users/account",	
+                statusCode:302	
+            });	
+        }	
+        else 	
+        {	
+            return({	
+                url : "/users/wallet",	
+                statusCode:302	
+            });	
+        }	
+        // return({	
+        //     hello : "world",	
+        // });
     }
-
+    
+    // Get Account for redirect logic
     @Get("/account")
     getAccount(@Req() req: Request) {
         return {
@@ -121,6 +154,63 @@ export class UsersController {
         }
     }
     
+    // Get Wallet for redirect logic	
+    @Get("/wallet")	
+    getWallet(@Req() req: Request) {	
+        return {	
+            name:"wallet"	
+        }	
+    }
+
+    //Route Parameters as string object	
+    @Get("/videos/:id")	
+    getVideos(@Param() params: Record<string,any>,@Req() req: Request) {	
+        return params;	
+    }
+
+    		
+    //Route Parameters as number object	
+    @Get("/video/:id")	
+    getVideo(@Param('id') param: number,@Req() req: Request) {	
+        return param;	
+    }	
+    //Route Parameters multiple parameters	
+    @Get("/videosextra/:id/:name")	
+    getVideosExtra(@Param() param: videosParams,@Req() req: Request) {	
+        // return param;	
+        return {	
+            extra_id: param.id,	
+            extra_name: param.name	
+        }	
+    }
+
+    		
+    //Query Parameters as string object	
+    @Get("/images")	
+    getImages(@Query() query: Record<string,any>,@Req() req: Request) {	
+        return query;	
+    }	
+    //Query Parameters as string object	
+    @Get("/images-test2")	
+    getImagesTest2(@Query("name") query: string,@Req() req: Request) {	
+        return query;	
+    }	
+    //Query Parameters example 3	
+    @Get("/images-test3")	
+    getImagesTest3(@Query() query: imagesQuery,@Req() req: Request) {	
+        return query;	
+    }	
+    //Headers example 1	
+    @Get("/file-test")	
+    getFileTest(@Headers() header: Record<string,any>,@Req() req: Request) {	
+        return header;	
+    }	
+    //Headers example 2	
+    @Get("/file-test2")	
+    getFileTest2(@Headers("user-agent") header: string,@Req() req: Request) {	
+        return header;	
+    }
+
     @Post("/video-test4")
     addVideo(@Body() requestData:Record<string,any>) {
     // addVideo(@Body("name") requestData:string) {
