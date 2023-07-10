@@ -1,0 +1,39 @@
+Install Nest JS Globally by npm
+npm i -g @nestjs/cli
+
+Install Nest JS Globally by pnpm
+pnpm add -g @nestjs/cli
+
+Create New project 
+nest new nestjs-fresh-learning and choose pnpm
+
+For default
+pnpm run
+
+For dev
+pnpm run start:dev (run time changes)
+
+
+For run test
+pnpm run test
+
+For end to end test
+pnpm run test:e2e
+
+For Build
+pnpm run build
+
+For port already in use
+sudo lsof -i :3000
+Kill -9 id
+
+To install fastify
+pnpm i @nestjs/platform-fastify -d
+
+To use fastify or any other platform
+1) go to main.ts file and add second parameter
+import { FastifyAdapter } from '@nestjs/platform-fastify';
+const app = await NestFactory.create(AppModule,new FastifyAdapter());
+
+For fastify to add domain specific ip
+await app.listen(3000,"0.0.0.0");
