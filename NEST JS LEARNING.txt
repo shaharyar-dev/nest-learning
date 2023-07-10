@@ -68,3 +68,9 @@ Dependency that we need, we can ask with an injection token either in constructo
 
 If node module is missing
 pnpm install
+
+Github
+shaharyar_saigal@hotmail.com / shaharyar123@
+
+git credential
+shaharyar-dev / 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
