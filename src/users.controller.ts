@@ -7,14 +7,25 @@ import {
     Req,
     Res,
     Header,
-    Redirect
+    Redirect,
+    Body,
+    Inject
 } from "@nestjs/common";
 import { of } from "rxjs";
 import { Request, response } from "express";
+import { PostsStore } from "./posts.store";
 
 @Controller('/users')
 
 export class UsersController {
+    // To inject with using decorators
+    // constructor(@Inject(PostsStore) private store: PostsStore) {
+    // constructor(@Inject("STORE") private store: PostsStore) {
+    // constructor(@optional() private store: PostsStore) { optional will remove error
+     
+    constructor(private store: PostsStore) {
+        console.log(this.store);
+    }
 
     // @Get("/profile")
     // async getProfile() {
@@ -109,6 +120,16 @@ export class UsersController {
             name:"account"
         }
     }
-
+    
+    @Post("/video-test4")
+    addVideo(@Body() requestData:Record<string,any>) {
+    // addVideo(@Body("name") requestData:string) {
+        // console.log(requestData)
+        return  {
+            requestData
+            // requestData.name
+            // success:true,
+        }
+    }
 
 }

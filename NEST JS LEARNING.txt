@@ -37,3 +37,31 @@ const app = await NestFactory.create(AppModule,new FastifyAdapter());
 
 For fastify to add domain specific ip
 await app.listen(3000,"0.0.0.0");
+
+Body() will work with json and url-encode
+
+To use depency injection we have to register in ioc container as provider
+
+IOC Approach
+We are delegating control to Nestjs runtime for instantiation & managing dependencies.
+
+Providers Types
+1) Standard / Class based
+Use case Services
+
+2) Non class based
+number,boolean, string, object, Array function
+Use case Configs, Database name, url, Api
+
+3) Factory
+factory function, 
+Async Factory function
+Use case : dynamic or conditional values, class instance
+
+Injection Types
+Dependency that we need, we can ask with an injection token either in constructor or in Property definiation
+
+1) Constructor Injection
+2) Property Injection
+   a) Class provider
+   b) non class 
