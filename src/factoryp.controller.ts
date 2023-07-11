@@ -5,8 +5,8 @@ import { Subject } from "rxjs";
 @Controller('/factoryp')
 // Factory Provider Class
 export class FactorypController {
-    constructor(@Inject("EVENT_STORE") private eventbus:Subject<any>) {
-        console.log(this.eventbus);
+    constructor(@Inject("DATABASE_CONNECTION") private connection:any) {
+        console.log(this.connection);
     }
 
 }

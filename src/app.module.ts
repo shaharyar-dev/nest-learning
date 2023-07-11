@@ -22,7 +22,7 @@ class EnvConfig {
 }
 
 function createConnection() {
-
+  return "Connected";
 }
 @Module({
   imports: [],
@@ -97,15 +97,26 @@ function createConnection() {
   //   }
   // ],
  // Async provider
+ // Async will wait until the promise is resolved
   providers: [
     {
       provide: "DATABASE_CONNECTION",
-      useFactory: async ()  => {
+      useFactory: async (config)  => {
+        console.log(config);
         const connection = await createConnection();
         return createConnection();
       },
-      inject:[],
-    }
+      inject:["DB_CONFIG"],
+    },
+    {
+      provide: "DB_CONFIG",
+      useValue:  {
+        ur : "http://localhost",
+        user : "admin",
+        password : "admin",
+        database : "test",
+      },
+    },
   ],
   // Factory Provider ends here
 

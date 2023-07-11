@@ -69,15 +69,9 @@ Dependency that we need, we can ask with an injection token either in constructo
 If node module is missing
 pnpm install
 
-<<<<<<< HEAD
+Injection Scope
+Default Scope
+Only one scope will be initialized per module
 
-=======
-<<<<<<< HEAD
-=======
-Github
-shaharyar_saigal@hotmail.com / shaharyar123@
-
-git credential
-shaharyar-dev / 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
->>>>>>> f08a4a066cd5c236d4d3b4b489eebb2adef0cd1c
->>>>>>> 6501d8aa3731a266579e7932bb7ff8b77934822f
+Request Scope
+Scope will be initialize on every request and on response it will destroy
