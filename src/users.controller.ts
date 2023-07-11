@@ -18,7 +18,8 @@ import {
 
 import { of } from "rxjs";
 import { Request, response } from "express";
-import { PostsStore } from "./posts.store";
+import { PostsStore } from "./store/posts.store";
+import { Store } from "./store/store";
 
 interface videosParams {
     id: number;

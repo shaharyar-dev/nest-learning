@@ -7,6 +7,11 @@ interface Post {
 }
 @Injectable()
 export class PostsStore {
+
+    constructor() {
+        console.log("post tore init");
+    }
+
     private store = new Map<number, Post>();
     addPost(post: Post) {
         this.store.set(post.id, post);
