@@ -8,6 +8,14 @@ import { Config } from './config';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import e from 'express';
 import { FactorypController } from './factoryp.controller';
+import { InjectionScope } from './injection.scope';
+import { InjectionsController } from './injections.controller';
+import { InjectionstController } from './injectionst.controller';
+import { EmployeesController } from './employees.controller';
+import { EmployeeService } from './employees.service';
+import { UsersfmModule } from './usersfm/usersfm.module';
+import { JobsModule } from './jobs/jobs.module';
+import { CacheStoreModule } from './cache-store';
 
 // import { AppController } from './app.controller';
 // import { AppService } from './app.service';
@@ -25,7 +33,12 @@ function createConnection() {
   return "Connected";
 }
 @Module({
-  imports: [],
+  //Dynamic module start here
+  // imports: [UsersfmModule,JobsModule,CacheStoreModule] , // Error in dynamic module because we have to add register
+  imports: [UsersfmModule,JobsModule,CacheStoreModule.register({storeName: "YT_App"})] ,
+
+  //Dynamic module ends here
+
   // Disable issue with providers
   // controllers : [UsersController,PostsController,ValuecController],
 
@@ -66,9 +79,9 @@ function createConnection() {
   // Value providers ends here
 
   // Factory Provider starts here
+  // controllers : [FactorypController],
   
   // For value constructor
-  controllers : [FactorypController],
 
   // providers: [
   //   {
@@ -96,30 +109,42 @@ function createConnection() {
   //     useValue: 2
   //   }
   // ],
- // Async provider
- // Async will wait until the promise is resolved
-  providers: [
-    {
-      provide: "DATABASE_CONNECTION",
-      useFactory: async (config)  => {
-        console.log(config);
-        const connection = await createConnection();
-        return createConnection();
-      },
-      inject:["DB_CONFIG"],
-    },
-    {
-      provide: "DB_CONFIG",
-      useValue:  {
-        ur : "http://localhost",
-        user : "admin",
-        password : "admin",
-        database : "test",
-      },
-    },
-  ],
   // Factory Provider ends here
+ // Async provider starts here
+ // Async will wait until the promise is resolved
+  // providers: [
+  //   {
+  //     provide: "DATABASE_CONNECTION",
+  //     useFactory: async (config)  => {
+  //       console.log(config);
+  //       const connection = await createConnection();
+  //       return createConnection();
+  //     },
+  //     inject:["DB_CONFIG"],
+  //   },
+  //   {
+  //     provide: "DB_CONFIG",
+  //     useValue:  {
+  //       ur : "http://localhost",
+  //       user : "admin",
+  //       password : "admin",
+  //       database : "test",
+  //     },
+  //   },
+  // ],
+  // Async Provider ends here
 
+  // Injection Scope starts here
+  
+  // controllers : [InjectionsController,InjectionstController],
+
+  //   providers: [InjectionScope],
+  // Injection Scope ends here
+
+  // Services starts here
+    // controllers : [EmployeesController],
+    // providers: [EmployeeService],
+  // services ends  here
 
 })
 export class AppModule {}

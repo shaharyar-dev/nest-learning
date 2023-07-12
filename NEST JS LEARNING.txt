@@ -75,3 +75,28 @@ Only one scope will be initialized per module
 
 Request Scope
 Scope will be initialize on every request and on response it will destroy
+
+Transient Scope
+New dedicated Instance of provider for each consumer (whoever injects it)
+For example if we require different store for individual module then we will use it
+user store
+employer store etc
+
+Services are used to connect with db
+
+What is an DTO
+A data transfer object (DTO) is an object that carries data between processes. You can use this technique to facilitate communication between two systems (like an API and your server) without potentially exposing sensitive information.
+
+Modules
+1) Featured Module
+usersfm folder
+2) Shared Module
+When we use import module it is called shared module
+3) Global Module
+If we want to use module without mentioning it and can be call anywhere
+If we mention @Global() on our module
+But it should mentioned in app module default file
+4) Dynamic Module
+if you want to configure dynamic configuration so that where we will use dynamic module
+
+* We can also import sub module both export and import are required so you have to mentioned it on both
