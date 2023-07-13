@@ -15,10 +15,16 @@ import { EmployeesController } from './employees.controller';
 import { EmployeeService } from './employees.service';
 import { UsersfmModule } from './usersfm/usersfm.module';
 import { JobsModule } from './jobs/jobs.module';
-import { CacheStoreModule } from './cache-store';
+import { CacheStoreModule, StoreType } from './cache-store';
 
 // import { AppController } from './app.controller';
 // import { AppService } from './app.service';
+import { BooksModule } from './books/books.module';
+import { Books2Module } from './books2/books2.module';
+import { Books3Module } from './books3/books3.module';
+import { Books4Module } from './books4/books4.module';
+import { Books5Module } from './books5/books5.module';
+import { Books6Module } from './books6/books6.module';
 
 const IS_DEV_MODE = false;
 @Injectable()
@@ -35,7 +41,9 @@ function createConnection() {
 @Module({
   //Dynamic module start here
   // imports: [UsersfmModule,JobsModule,CacheStoreModule] , // Error in dynamic module because we have to add register
-  imports: [UsersfmModule,JobsModule,CacheStoreModule.register({storeName: "YT_App"})] ,
+  // imports: [UsersfmModule,JobsModule,CacheStoreModule.register({storeName: "YT_App"}), BooksModule, Books2Module, Books3Module, Books4Module, Books5Module, Books6Module] ,
+    imports: [UsersfmModule,JobsModule,CacheStoreModule.forRoot({storeType: StoreType.FILE}), BooksModule, Books2Module, Books3Module, Books4Module, Books5Module, Books6Module] ,
+
 
   //Dynamic module ends here
 

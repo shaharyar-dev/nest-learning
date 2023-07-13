@@ -100,3 +100,5 @@ But it should mentioned in app module default file
 if you want to configure dynamic configuration so that where we will use dynamic module
 
 * We can also import sub module both export and import are required so you have to mentioned it on both
+
+forRoot is used to set configuration for one time only
